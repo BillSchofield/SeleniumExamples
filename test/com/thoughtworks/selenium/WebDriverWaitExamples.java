@@ -13,9 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class WebDriverWaitExamples {
+    private final By newButton = By.cssSelector("body > button:nth-child(4)");
     private WebDriverWait wait;
     private WebDriver driver;
 
@@ -26,16 +28,41 @@ public class WebDriverWaitExamples {
         driver.findElement(By.cssSelector("body > button")).click();
         final Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         assertThat(alert, is(notNullValue()));
+        alert.accept();
     }
 
     @Test
     public void elementToBeClickable(){
+        // elementToBeClickable can also be called with a WebElement
         getW3Example("tryjsref_document_createelement", "jsref");
         driver.findElement(By.cssSelector("body > button")).click();
-        WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > button:nth-child(4)")));
-        sleep();
+        WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(newButton));
         assertThat(secondButton, is(notNullValue()));
     }
+
+    @Test
+    public void presenceOfElementLocated(){
+        getW3Example("tryjsref_document_createelement", "jsref");
+        driver.findElement(By.cssSelector("body > button")).click();
+        WebElement secondButton = wait.until(ExpectedConditions.presenceOfElementLocated(newButton));
+        assertThat(secondButton, is(notNullValue()));
+    }
+
+    @Test
+    public void titleIs(){
+        driver.get("http://www.w3schools.com/");
+        driver.findElement(By.cssSelector("#maincol > div:nth-child(3) > a:nth-child(3)")).click();
+        wait.until(ExpectedConditions.titleIs("JavaScript Tutorial"));
+        assertThat(driver.getTitle(), is("JavaScript Tutorial"));
+    }
+
+//    @Test
+//    public void xxx(){
+//        getW3Example("tryjsref_document_createelement", "jsref");
+//        driver.findElement(By.cssSelector("body > button")).click();
+//        WebElement secondButton = wait.until(ExpectedConditions.elementToBeSelected());
+//        assertThat(secondButton, is(notNullValue()));
+//    }
 
     @Before
     public void setup() {
@@ -56,7 +83,7 @@ public class WebDriverWaitExamples {
 
     private void sleep() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

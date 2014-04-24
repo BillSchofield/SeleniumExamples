@@ -10,6 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 public class HelpersExamples {
     private WebDriver driver;
 
@@ -20,15 +23,18 @@ public class HelpersExamples {
         element.sendKeys("Hello World");
     }
 
-//    @Test
-//    public void compositeByExample() {
-//        By compositeBy = new CompositeBy();
-//    }
+    @Test
+    public void compositeByExample() {
+        By compositeBy = new CompositeBy(By.id("chm"), By.cssSelector("div:nth-child(2)"));
+//      Equivalent By.cssSelector("#chm > div:nth-child(2) > div:nth-child(2)")
+        assertThat(driver.findElement(compositeBy).isDisplayed(), is(false));
+    }
 
     @Before
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/Users/ThoughtWorker/Tools/chromedriver");
         this.driver = new ChromeDriver();
+        driver.get("https://www.google.com/");
 
     }
 
