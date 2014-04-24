@@ -56,14 +56,6 @@ public class WebDriverWaitExamples {
         assertThat(driver.getTitle(), is("JavaScript Tutorial"));
     }
 
-//    @Test
-//    public void xxx(){
-//        getW3Example("tryjsref_document_createelement", "jsref");
-//        driver.findElement(By.cssSelector("body > button")).click();
-//        WebElement secondButton = wait.until(ExpectedConditions.elementToBeSelected());
-//        assertThat(secondButton, is(notNullValue()));
-//    }
-
     @Before
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/Users/ThoughtWorker/Tools/chromedriver");
@@ -79,13 +71,5 @@ public class WebDriverWaitExamples {
     private void getW3Example(String w3exampleName, String js) {
         driver.get("http://www.w3schools.com/" + js + "/tryit.asp?filename=" + w3exampleName);
         driver.switchTo().frame("iframeResult");
-    }
-
-    private void sleep() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
