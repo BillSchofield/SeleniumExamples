@@ -1,4 +1,4 @@
-package com.thoughtworks.selenium;
+package com.thoughtworks.selenium.examples;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,11 +18,21 @@ public class ActionExamples {
     @Test
     public void mouseOver() {
         driver.get("http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseover");
-        Actions action = new Actions(driver);
         driver.switchTo().frame("iframeResult");
         WebElement elem = driver.findElement(By.cssSelector("body > img"));
+        sleep();
+        Actions action = new Actions(driver);
         action.moveToElement(elem);
         action.perform();
+        sleep();
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Before

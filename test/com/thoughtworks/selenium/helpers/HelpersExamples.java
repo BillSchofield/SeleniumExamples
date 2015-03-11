@@ -19,7 +19,8 @@ public class HelpersExamples {
     @Test
     public void nonStaleElementFinder() {
         By locator = By.id("gbqfq");
-        final WebElement element = new NonStaleElementFinder(driver, 2).findElement(locator);
+        NonStaleElementFinder nonStaleElementFinder = new NonStaleElementFinder(driver, 2);
+        final WebElement element = nonStaleElementFinder.findElement(locator);
         element.sendKeys("Hello World");
     }
 

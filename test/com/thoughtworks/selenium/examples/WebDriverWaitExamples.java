@@ -1,4 +1,4 @@
-package com.thoughtworks.selenium;
+package com.thoughtworks.selenium.examples;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,9 +26,22 @@ public class WebDriverWaitExamples {
         // AlertIsPresent has great code to show how to detect and handle alerts
         getW3Example("tryjs_alert", "js");
         driver.findElement(By.cssSelector("body > button")).click();
+
+        sleep();
+
         final Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        sleep();
         assertThat(alert, is(notNullValue()));
         alert.accept();
+        sleep();
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -36,14 +49,15 @@ public class WebDriverWaitExamples {
         // elementToBeClickable can also be called with a WebElement
         getW3Example("tryjsref_document_createelement", "jsref");
         driver.findElement(By.cssSelector("body > button")).click();
-        WebElement secondButton = wait.until(ExpectedConditions.elementToBeClickable(newButton));
+        WebElement secondButton = wait.until(ExpectedConditions. elementToBeClickable(newButton));
         assertThat(secondButton, is(notNullValue()));
     }
 
     @Test
     public void presenceOfElementLocated(){
         getW3Example("tryjsref_document_createelement", "jsref");
-        driver.findElement(By.cssSelector("body > button")).click();
+        WebElement element = driver.findElement(By.cssSelector("body > button"));
+        element.click();
         WebElement secondButton = wait.until(ExpectedConditions.presenceOfElementLocated(newButton));
         assertThat(secondButton, is(notNullValue()));
     }
