@@ -7,7 +7,7 @@ Change the line `System.setProperty("webdriver.chrome.driver", "/Users/ThoughtWo
 `FindElementsUsingLocators` to reference the location where you installed Chrome Driver
 
 Change the line `private final String indexURL =
-`"file://localhost/Users/ThoughtWorker/Projects/SeleniumUtils/resources/index.html";` in `FindElementsUsingLocators` to
+"file://localhost/Users/ThoughtWorker/Projects/SeleniumUtils/resources/index.html";` in `FindElementsUsingLocators` to
 reference your local version of this project
 
 ## Using WebDriver to find WebElements using Locators
