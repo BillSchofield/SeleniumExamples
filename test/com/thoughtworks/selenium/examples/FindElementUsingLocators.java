@@ -72,7 +72,7 @@ public class FindElementUsingLocators {
 
         Point imageLocation = imageElement.getLocation();
 
-        assertThat(imageLocation, is(new Point(8, 42)));
+        assertThat(imageLocation, is(new Point(8, 132)));
     }
 
     // By.linkText
