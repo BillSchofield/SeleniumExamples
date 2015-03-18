@@ -1,5 +1,6 @@
 package com.thoughtworks.selenium.examples;
 
+import com.thoughtworks.selenium.Sleeper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,6 @@ public class FindElementUsingLocators {
     public void shouldFindElementByIdAndGetText() {
         By nameLocator = By.id("name");
         WebElement nameElement = driver.findElement(nameLocator);
-
         assertThat(nameElement.getText(), is("Name:"));
     }
 
@@ -92,7 +92,7 @@ public class FindElementUsingLocators {
     // Find the link element with partial matching visible text.
     @Test
     public void shouldFindElementByPartialLinkTextAndGetTagName() {
-        By moreOttersLink = By.linkText("More Otters!");
+        By moreOttersLink = By.partialLinkText("Otter");
 
         WebElement linkElement = driver.findElement(moreOttersLink);
 
