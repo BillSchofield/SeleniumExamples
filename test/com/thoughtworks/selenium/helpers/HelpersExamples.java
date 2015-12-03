@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +20,7 @@ public class HelpersExamples {
     @Test
     public void nonStaleElementFinder() {
         By locator = By.id("gbqfq");
-        NonStaleElementFinder nonStaleElementFinder = new NonStaleElementFinder(driver, 2);
+        SearchContext nonStaleElementFinder = new NonStaleElementFinder(driver, 2);
         final WebElement element = nonStaleElementFinder.findElement(locator);
         element.sendKeys("Hello World");
     }
